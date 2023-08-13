@@ -5,6 +5,7 @@ import io
 from PIL import Image
 import uuid
 from os import path
+import random
 
 
 class AbstractShape(ABC):
@@ -25,7 +26,7 @@ class AbstractShape(ABC):
 
     def __set_random_bg_color(self):
         """
-        Set a random background color on the turtle canvas.
+        Set a background color to black on the turtle canvas.
 
         Since it's not possible to set this value directly into the canvas we
         draw a rectangle that fill all the drawing window with a random filling
@@ -33,10 +34,9 @@ class AbstractShape(ABC):
 
         :return: None
         """
-        color = np.random.randint(0, 255, 3)
 
-        self.painter.fillcolor(color[0], color[1], color[2])
-        self.painter.color(color[0], color[1], color[2])
+        self.painter.fillcolor(0, 0, 0)  # Set black color
+        self.painter.color(0, 0, 0)      # Set black color
         self.painter.penup()
         self.painter.setposition(-160, 160)
         self.painter.pendown()
@@ -62,10 +62,19 @@ class AbstractShape(ABC):
 
         :return: None
         """
-        self.painter.reset()
-
-        self.__set_random_bg_color()
-        color = np.random.randint(0, 255, 3)
+       # List of available colors
+        colors = [
+        (255, 0, 0),     # Red
+        (0, 255, 0),     # Green
+        (255, 165, 0),   # Orange
+        (255, 255, 0),   # Yellow
+        (238, 130, 238), # Violet
+        (0, 0, 255)      # Blue
+        ]
+    
+        # Selecting a random filling color from the list
+        color = random.choice(colors)
+    
         self.painter.fillcolor(color[0], color[1], color[2])
         self.painter.color(color[0], color[1], color[2])
         self.painter.penup()
