@@ -78,8 +78,8 @@ class AbstractShape(ABC):
         self.painter.fillcolor(color[0], color[1], color[2])
         self.painter.color(color[0], color[1], color[2])
         self.painter.penup()
-        self.radius = np.random.randint(10, 75)
-        self.rotation = np.deg2rad(np.random.randint(-180, 180))
+        self.radius = 50
+        self.rotation = np.deg2rad(0)
 
         self.x, self.y = (
             np.random.randint(
